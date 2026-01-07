@@ -1,4 +1,4 @@
-// KaTeX'i yükle
+// Load KaTeX
 const loadKaTeX = () => {
   return new Promise((resolve) => {
     // KaTeX CSS
@@ -15,7 +15,7 @@ const loadKaTeX = () => {
   });
 };
 
-// LaTeX ifadelerini render et
+// Render LaTeX expressions
 const renderLatex = (text) => {
   if (!window.katex) return text;
   
@@ -46,7 +46,7 @@ const renderLatex = (text) => {
   return rendered;
 };
 
-// Önizleme kutusu oluştur
+// Create preview box
 const createPreviewBox = () => {
   const preview = document.createElement('div');
   preview.id = 'latex-math-preview';
@@ -64,17 +64,17 @@ const createPreviewBox = () => {
   return preview;
 };
 
-// Ana fonksiyon
+// Main function
 const initMathPreview = async () => {
   await loadKaTeX();
   
   let previewBox = null;
   let currentTextarea = null;
   
-  // Mesaj kutusunu bul ve izle
+  // find and watch the message box
   const observeTextarea = () => {
     const checkTextarea = setInterval(() => {
-      // Instagram mesaj input'u (textarea veya contenteditable div)
+      // Instagram message input (textarea or contenteditable div)
       const textarea = document.querySelector('[contenteditable="true"][role="textbox"]') ||
                       document.querySelector('textarea[placeholder*="Mesaj"]') ||
                       document.querySelector('textarea[placeholder*="Message"]');
@@ -83,12 +83,12 @@ const initMathPreview = async () => {
         currentTextarea = textarea;
         clearInterval(checkTextarea);
         
-        // Önizleme kutusunu oluştur
+        // Create preview box
         if (!previewBox) {
           previewBox = createPreviewBox();
           textarea.parentElement.insertBefore(previewBox, textarea);
           
-          // Kapatma butonu
+          // Close button
           previewBox.querySelector('.latex-preview-close').addEventListener('click', () => {
             previewBox.style.display = 'none';
           });
@@ -99,7 +99,7 @@ const initMathPreview = async () => {
           const text = textarea.innerText || textarea.value || '';
           const content = previewBox.querySelector('.latex-math-preview-content');
           
-          // LaTeX ifadesi var mı kontrol et
+          // Check if LaTeX expression exists
           if (text.includes('$')) {
             const rendered = renderLatex(text);
             content.innerHTML = rendered || '<em style="color: #999;">Matematik ifadesi algılanmadı</em>';
@@ -117,18 +117,18 @@ const initMathPreview = async () => {
       }
     }, 1000);
     
-    // 30 saniye sonra aramayı durdur
+    // stop searching after 30 seconds
     setTimeout(() => clearInterval(checkTextarea), 30000);
   };
   
-  // Sayfa yüklendiğinde başlat
+  // Start when page is loaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', observeTextarea);
   } else {
     observeTextarea();
   }
   
-  // Sayfa değişikliklerini izle (Instagram SPA)
+  // Monitor page changes (Instagram SPA)
   const observer = new MutationObserver(() => {
     if (!currentTextarea || !document.contains(currentTextarea)) {
       currentTextarea = null;
@@ -143,5 +143,6 @@ const initMathPreview = async () => {
   });
 };
 
-// Başlat
+// Initialize
+
 initMathPreview();
