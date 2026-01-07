@@ -1,19 +1,19 @@
-// Sayfa yüklendiğinde ayarları yükle
+// Load settings when the page is loaded
 document.addEventListener('DOMContentLoaded', async () => {
   await loadSettings();
   setupEventListeners();
 });
 
-// Ayarları yükle
+// Load settings
 async function loadSettings() {
   try {
     const result = await chrome.storage.sync.get(['enabled', 'theme']);
     
-    // Enable/disable durumu
+    // Enable/disable status
     const enabled = result.enabled !== undefined ? result.enabled : true;
     document.getElementById('enableExtension').checked = enabled;
     
-    // Tema seçimi
+    // Theme selection
     const theme = result.theme || 'silver';
     const themeCards = document.querySelectorAll('.theme-card');
     themeCards.forEach(card => {
@@ -29,7 +29,7 @@ async function loadSettings() {
   }
 }
 
-// Event listener'ları kur
+// Setup event listeners
 function setupEventListeners() {
   // Enable/Disable toggle
   const toggle = document.getElementById('enableExtension');
@@ -37,7 +37,7 @@ function setupEventListeners() {
     const enabled = e.target.checked;
     await chrome.storage.sync.set({ enabled });
     
-    // Content script'e mesaj gönder
+    // Send message to content script
     try {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       if (tab && tab.url && tab.url.includes('instagram.com')) {
@@ -53,22 +53,22 @@ function setupEventListeners() {
     updateStatus(enabled ? 'Eklenti aktif' : 'Eklenti kapalı', 'success');
   });
 
-  // Tema seçimi
+  // Theme selection
   const themeCards = document.querySelectorAll('.theme-card');
   themeCards.forEach(card => {
     card.addEventListener('click', async () => {
       const theme = card.dataset.theme;
       
-      // Tüm kartlardan active class'ını kaldır
+      // Remove active class from all cards
       themeCards.forEach(c => c.classList.remove('active'));
       
-      // Seçili karta active ekle
+      // Add active to selected card
       card.classList.add('active');
       
-      // Ayarı kaydet
+      // Save setting
       await chrome.storage.sync.set({ theme });
       
-      // Content script'e mesaj gönder
+      // Save message to content script
       try {
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
         if (tab && tab.url && tab.url.includes('instagram.com')) {
@@ -86,7 +86,7 @@ function setupEventListeners() {
   });
 }
 
-// Tema adını al
+// Get theme name
 function getThemeName(theme) {
   const names = {
     silver: 'Gümüş',
@@ -98,7 +98,7 @@ function getThemeName(theme) {
   return names[theme] || theme;
 }
 
-// Status mesajını güncelle
+// Update status message
 function updateStatus(message, type = 'success') {
   const statusText = document.getElementById('statusText');
   const indicator = document.querySelector('.status-indicator');
@@ -111,9 +111,10 @@ function updateStatus(message, type = 'success') {
     indicator.style.background = '#f44336';
   }
   
-  // Animasyon efekti
+  // Animation effect
   statusText.style.animation = 'none';
   setTimeout(() => {
     statusText.style.animation = 'fadeIn 0.3s ease-out';
   }, 10);
+
 }
