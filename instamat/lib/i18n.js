@@ -1,4 +1,4 @@
-// Çeviri sistemi - 10 popüler dil
+// Translation system - 10 popular languages
 const translations = {
   tr: {
     // Header
@@ -404,15 +404,15 @@ const translations = {
   }
 };
 
-// Çeviriyi uygula
+// Apply translation
 function applyTranslations(lang) {
   const t = translations[lang] || translations.tr;
   
-  // data-i18n attribute'u olan tüm elementleri bul
+  // Find all elements with the data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
     if (t[key]) {
-      // innerHTML veya textContent kullan
+      // Use innerHTML or textContent
       if (element.hasAttribute('data-i18n-html')) {
         element.innerHTML = t[key];
       } else {
@@ -421,7 +421,7 @@ function applyTranslations(lang) {
     }
   });
   
-  // Placeholder'ları güncelle
+  // Update placeholders
   document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
     const key = element.getAttribute('data-i18n-placeholder');
     if (t[key]) {
@@ -429,7 +429,7 @@ function applyTranslations(lang) {
     }
   });
   
-  // Title'ları güncelle
+  // Update titles
   document.querySelectorAll('[data-i18n-title]').forEach(element => {
     const key = element.getAttribute('data-i18n-title');
     if (t[key]) {
@@ -441,4 +441,5 @@ function applyTranslations(lang) {
 // Export
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { translations, applyTranslations };
+
 }
