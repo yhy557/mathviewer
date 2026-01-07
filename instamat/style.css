@@ -88,11 +88,12 @@
   line-height: 1.4;
 }
 
-/* KaTeX elementlerini güzelleştir */
+/* Beautify KaTeX elements */
 .katex {
   font-size: 1.1em;
 }
 
 .katex-display {
   margin: 1em 0;
+
 }
