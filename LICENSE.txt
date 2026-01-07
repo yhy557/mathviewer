@@ -1,0 +1,10 @@
+Copyright (C) [YEAR] [YOUR NAME]. All Rights Reserved.
+
+Copying, reproducing, redistributing the source code of this software, 
+or using it in any project without permission is strictly prohibited. 
+
+Users are only permitted in the following circumstances:
+1. Reviewing the code and reporting bugs.
+2. Submitting a Pull Request (change request) through this repository.
+
+All other uses require written permission.
