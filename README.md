@@ -8,3 +8,6 @@ This Chrome extension uses the Katex code editor to display any math, physics, o
  Instagram
 
  -------------------------------------------
+
+
+ Copyright Notice All rights to this project are reserved. Copying the code, using it in other projects, or distributing it without permission is prohibited. Only “Pull Requests” (Change Requests) for bug fixes or improvements are permitted.
