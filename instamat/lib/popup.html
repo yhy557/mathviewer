@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaTeX Preview Ayarları</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="popup-header">
+      <h1>⚡ LaTeX Preview</h1>
+      <p class="subtitle">Instagram için matematik formül önizleme</p>
+    </div>
+
+    <!-- Enable/Disable Toggle -->
+    <div class="setting-section">
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-icon">🔌</div>
+          <div>
+            <h3>Eklenti Durumu</h3>
+            <p>Önizleme özelliğini aç/kapat</p>
+          </div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="enableExtension" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Theme Selection -->
+    <div class="setting-section">
+      <h2 class="section-title">🎨 Tema Seçimi</h2>
+      
+      <div class="theme-grid">
+        <!-- Gümüş (Default) -->
+        <div class="theme-card" data-theme="silver">
+          <div class="theme-preview silver-preview"></div>
+          <div class="theme-name">Gümüş</div>
+          <div class="theme-check">✓</div>
+        </div>
+
+        <!-- Okyanus -->
+        <div class="theme-card" data-theme="ocean">
+          <div class="theme-preview ocean-preview"></div>
+          <div class="theme-name">Okyanus</div>
+          <div class="theme-check">✓</div>
+        </div>
+
+        <!-- Orman -->
+        <div class="theme-card" data-theme="forest">
+          <div class="theme-preview forest-preview"></div>
+          <div class="theme-name">Orman</div>
+          <div class="theme-check">✓</div>
+        </div>
+
+        <!-- Gökyüzü -->
+        <div class="theme-card" data-theme="sky">
+          <div class="theme-preview sky-preview"></div>
+          <div class="theme-name">Gökyüzü</div>
+          <div class="theme-check">✓</div>
+        </div>
+
+        <!-- Gece -->
+        <div class="theme-card" data-theme="night">
+          <div class="theme-preview night-preview"></div>
+          <div class="theme-name">Gece</div>
+          <div class="theme-check">✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-bar">
+      <span class="status-indicator"></span>
+      <span id="statusText">Ayarlar kaydedildi</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

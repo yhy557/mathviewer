@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Instagram LaTeX Math Preview",
+  "version": "1.0.0",
+  "description": "Instagram mesajlarında LaTeX matematik ifadelerini önizleme",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://www.instagram.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["katex.min.css", "katex.min.js"],
+      "matches": ["*://www.instagram.com/*"]
+    }
+  ]
+}
