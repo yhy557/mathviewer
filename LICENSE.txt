@@ -1,4 +1,4 @@
-Copyright (C) [YEAR] [YOUR NAME]. All Rights Reserved.
+Copyright (C) [2026] [yhy557]. All Rights Reserved.
 
 Copying, reproducing, redistributing the source code of this software, 
 or using it in any project without permission is strictly prohibited. 
